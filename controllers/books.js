@@ -1,11 +1,21 @@
+const Book = require('../models/Book')
+
 module.exports = {
   all: function(req, res) {
-    Book.find(function (err, books) {
-      if (err) {
-        res.send({err: err})
-      }
-      res.send(books)
-    })
+    Book.find()
+      .exec()
+      .then(books => {
+        res.send(books)
+      })
+      .catch(err => {
+        res.send(err)
+      }) 
+    // Book.find(function (err, books) {
+    //   if (err) {
+    //     res.send({err: err})
+    //   }
+    //   res.send(books)
+    // })
   },
   create: function(req, res) {
     var book = new Book(req.body);
@@ -26,7 +36,7 @@ module.exports = {
       res.send(result)
     });
   },
-  delete: function(req, res) {
+  deletion: function(req, res) {
     Book.remove({ _id: req.id }, function (err, result) {
       if (err) {
         res.send({err: err})
