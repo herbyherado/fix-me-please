@@ -5,6 +5,6 @@ var transactionsController = require('../controllers/transactions');
 router.get('/', transactionsController.all)
 router.post('/', transactionsController.create)
 router.put('/:id', transactionsController.update)
-router.delete('/:id', transactionsController.delete)
+router.delete('/:id', transactionsController.deletion)
 
 module.exports = router
